@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>Create user</label>
+    <label>Create user v2</label>
     <div class="row">
       <label>name</label>
       <pv-input-text id="name" v-model="username"></pv-input-text>
