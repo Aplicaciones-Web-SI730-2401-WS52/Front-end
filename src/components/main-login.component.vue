@@ -9,20 +9,51 @@
       <label>password</label>
       <pv-input-text id="username" v-model="password"></pv-input-text>
     </div>
-    <pv-button>login</pv-button>
+    <pv-button @click="login()">login</pv-button>
+      <pv-button @click="logout()">logout</pv-button>
   </div>
 </template>
 
 <script>
+import {AuthApiService} from "@/services/aut-api.service.js";
+
 export default {
   name: 'main-login',
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+        userApiService: new AuthApiService()
     }
   },
-  methods: {}
+  methods: {
+      login(){
+          let storage = sessionStorage;
+          storage.setItem('email',this.email)
+          //storage.setItem('password',this.password)
+
+          let body ={
+              email: this.email,
+              password: this.password
+          }
+
+          this.userApiService.login(body).then(response=>{
+              storage.setItem('jwt',response.data.accessToken)
+          })
+      },
+      logout(){
+          let storage = sessionStorage;
+          storage.removeItem('password')
+         // storage.clear()
+      }
+
+  },
+    created() {
+        let storage = sessionStorage;
+        this.email = storage.getItem('email')
+        this.password = storage.getItem('password')
+    }
+
 }
 </script>
 

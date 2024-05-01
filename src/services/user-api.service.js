@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const http = axios.create({
-    baseURL:'http://localhost:3000'
+    baseURL:'http://localhost:3000/660',
+    headers : {
+        'Authorization' :'Bearer ' +  sessionStorage.getItem('jwt')
+    }
 })
 export class UserApiService {
     async getAll() {

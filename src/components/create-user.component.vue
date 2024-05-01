@@ -47,7 +47,11 @@ export default {
           else
               alert('Error creating user')
       }
-  }
+  },
+    created() {
+        let storage = sessionStorage;
+        this.email = storage.getItem('email')
+    }
 }
 </script>
 
