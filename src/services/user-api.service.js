@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-    baseURL:'http://localhost:3000/660',
+    baseURL:'http://localhost:5168',
     headers : {
         'Authorization' :'Bearer ' +  sessionStorage.getItem('jwt')
     }
@@ -14,7 +14,7 @@ export class UserApiService {
         return await http.get('users/'+id)
     }
     async create(body) {
-        return await http.post('users',body)
+        return await http.post('v1/user/register',body)
     }
     async update(body,id) {
         return await http.put('users/'+id,body)

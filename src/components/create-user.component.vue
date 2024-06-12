@@ -2,32 +2,32 @@
   <div>
     <label>Create user v2</label>
     <div class="row">
-      <label>name</label>
-      <pv-input-text id="name" v-model="username"></pv-input-text>
+      <label>role</label>
+      <pv-input-text id="role" v-model="role"></pv-input-text>
     </div>
     <div class="row">
       <label>username</label>
-      <pv-input-text id="username" v-model="password"></pv-input-text>
+      <pv-input-text id="username" v-model="username"></pv-input-text>
     </div>
     <div class="row">
-      <label>email</label>
-      <pv-input-text id="email" v-model="email"></pv-input-text>
+      <label>password</label>
+      <pv-input-text id="password" v-model="password"></pv-input-text>
     </div>
     <pv-button @click="create()">save</pv-button>
   </div>
 </template>
 
 <script>
-import {UserApiService} from "@/services/user-api.service.js";
 import router from "@/router.js";
+import { UserApiService } from "@/services/user-api.service.js";
 
 export default {
   name: 'create-user',
   data() {
     return {
-      username: '',
+        username: '',
         password: '',
-      email: '',
+        role: '',
         userApiService : new UserApiService()
     }
   },
@@ -36,7 +36,7 @@ export default {
           const body = {
               username: this.username,
               password: this.password,
-              email: this.email
+              role: this.role
           }
 
           const response = await this.userApiService.create(body)
